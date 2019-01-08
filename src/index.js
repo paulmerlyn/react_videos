@@ -44,7 +44,7 @@ class App extends React.Component {
     render() {
         const videoItems = this.state.videos.map((video, key) => {
             return (
-                <div>
+                <div key={key}>
                     <img src={video.thumbnails.default.url} alt="alt text here" />
                     <h3>Dummy title of this video</h3>
                 </div>
@@ -63,7 +63,7 @@ class App extends React.Component {
                         <VideoDetail video={this.state.videos.pop()} />
                     </Col> 
                     <Col xs={12} md={4}>
-                        <VideoList videos={this.state.videos}>
+                        <VideoList>
                             {/* put a bunch of <VideoItem> components (i.e. JSX) here */}
                             {videoItems}
                         </VideoList>
