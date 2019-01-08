@@ -1,0 +1,11 @@
+.videoContainer { 
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden
+}
+
+.frame {
+    overflow: hidden;
+    min-height:300px;
+    width:100%
+}
