@@ -8,7 +8,7 @@ import VideoDetail from './components/VideoDetail';
 import Config from './config.js';
 
 class App extends React.Component {
-    state = {videos: []};
+    state = {videos: [], videoItemsAvailable: false};
 
     retrieveVideos = (value) => {
         console.log('retrieveVideos called in App component with value: ', value);
@@ -34,7 +34,7 @@ class App extends React.Component {
                     return { urlId: item.id.videoId, title: item.snippet.title, description: item.snippet.description, thumbnails: item.snippet.thumbnails };
                 });
                 console.log(items);
-                this.setState({videos: items});
+                this.setState({videos: items, videoItemsAvailable: true});
                 return;
           }).catch(err => {
               console.log('The error is: ', err.message);
@@ -46,7 +46,8 @@ class App extends React.Component {
             return (
                 <div key={key}>
                     <img src={video.thumbnails.default.url} alt="alt text here" />
-                    <h3>Dummy title of this video</h3>
+                    <h4>{video.title}</h4>
+                    <p>{video.description}</p>
                 </div>
             );
         });
@@ -63,7 +64,7 @@ class App extends React.Component {
                         <VideoDetail video={this.state.videos.pop()} />
                     </Col> 
                     <Col xs={12} md={4}>
-                        <VideoList>
+                        <VideoList videoItemsAvailable={this.state.videoItemsAvailable}>
                             {/* put a bunch of <VideoItem> components (i.e. JSX) here */}
                             {videoItems}
                         </VideoList>
