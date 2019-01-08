@@ -2,7 +2,7 @@ import React from 'react';
 
 export default class VideoList extends React.Component {
 
-    render() {
+    /*render() {
         const videos = (this.props.videos);
         if (videos == undefined) return;
         else {
@@ -17,5 +17,13 @@ export default class VideoList extends React.Component {
                 <div>{videoItems}</div>
             );
         }
+    }*/
+
+    render() {
+        return (
+            <div>
+                {this.props.children}
+            </div>    
+        )
     }
 }

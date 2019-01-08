@@ -42,6 +42,15 @@ class App extends React.Component {
     }
 
     render() {
+        const videoItems = this.state.videos.map((video, key) => {
+            return (
+                <div>
+                    <img src={video.thumbnails.default.url} alt="alt text here" />
+                    <h3>Dummy title of this video</h3>
+                </div>
+            );
+        });
+
         return (
             <Grid>
                 <Row className="show-grid">
@@ -54,7 +63,10 @@ class App extends React.Component {
                         <VideoDetail video={this.state.videos.pop()} />
                     </Col> 
                     <Col xs={12} md={4}>
-                        <VideoList videos={this.state.videos} />
+                        <VideoList videos={this.state.videos}>
+                            {/* put a bunch of <VideoItem> components (i.e. JSX) here */}
+                            {videoItems}
+                        </VideoList>
                     </Col>
                 </Row>    
             </Grid>
