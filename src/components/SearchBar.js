@@ -36,7 +36,7 @@ export default class SearchBar extends React.Component {
     render() {
         return (
             <form onSubmit={this.onSubmit}>
-                <FormGroup
+                <FormGroup style={{marginTop: 130}}
                     controlId="formBasicText"
                     validationState={this.getValidationState()}
                     >
