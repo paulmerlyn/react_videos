@@ -8,7 +8,7 @@ import VideoDetail from './components/VideoDetail';
 import Config from './config.js';
 
 class App extends React.Component {
-    state = {videos: [], videoItemsAvailable: false, listedVideoSelected: false};
+    state = {videos: [], videoItemsAvailable: false, loading: false};
 
     handleVideoItemClick = (event) => {
         /* I think we just need to know the index of the clicked item, which we can them relate to the videos array in state */
@@ -36,6 +36,7 @@ class App extends React.Component {
     }
 
     retrieveVideos = (value) => {
+        this.setState({loading: true});
         console.log('retrieveVideos called in App component with value: ', value);
 
         // Build Youtube query and call
@@ -61,10 +62,11 @@ class App extends React.Component {
                 console.log(items);
                 const featuredVideo = items[0];
 
-                this.setState({videos: items, videoItemsAvailable: true});
+                this.setState({videos: items, videoItemsAvailable: true, loading: false});
                 return;
           }).catch(err => {
               console.log('The error is: ', err.message);
+              this.setState({videoItemsAvailable: false, loading: false});
           })
     }
 
@@ -95,7 +97,7 @@ class App extends React.Component {
                 </Row>
                 <Row>
                     <Col sm={12} md={8}>
-                        <VideoDetail video={featuredVideo} />
+                        <VideoDetail video={featuredVideo} loading={this.state.loading}/>
                     </Col> 
                     <Col xs={12} md={4}>
                         <VideoList videoItemsAvailable={this.state.videoItemsAvailable}>
